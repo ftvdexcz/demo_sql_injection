@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        html,
+        body {
+            margin-left: 15px;
+            margin-right: 15px;
+            padding: 0px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+
+        .main {
+            margin-top: 20px;
+            display: flex;
+        }
+
+        .left {
+            width: 50%;
+        }
+
+        .right {
+            width: 50%;
+
+            min-height: 1000px;
+        }
+
+        input {
+            border: 1px solid #ccc;
+            border-radius: 2px;
+
+        }
+
+        .abc {
+            width: 500px;
+        }
+
+
+        /* style table */
+        table {
+            border-collapse: collapse;
+            border-bottom: 1px solid gray;
+            font-family: Tahoma, Verdana, Segoe, sans-serif;
+            width: 72%;
+        }
+
+        th {
+            border-bottom: 1px solid gray;
+            background: none repeat scroll 0 0 #0775d3;
+            padding: 10px;
+            color: #FFFFFF;
+        }
+
+        tr {
+            border-top: 1px solid gray;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background: #FFFFFF
+        }
+
+        tr:nth-child(odd) {
+            background: #BBBBBB
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=" {{ url_for('index') }}">Logout</a>
+                    </li>
+                </ul>
+                <!-- <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+            </div>
+        </div>
+    </nav>
+
+    <div style="border-bottom:1px solid #ccc; height: 100px">
+        <h4 style="margin-left:50px; line-height: 100px;">Executed SQL Query: {{login_query}}</h4>
+    </div>
+
+
+    <div class="main">
+        <div class="left">
+            <form method='post' action="">
+                Search item: <input type=text name="search" class="abc">
+                <input type=submit value="Search">
+            </form>
+            <br><br>
+            <p>Executed SQL Query: {{search_query}}</p>
+
+        </div>
+        <div class="right">
+            <!-- data get from db -->
+
+            <table style="margin-left: 50px;width: 90%;">
+                <tr>
+                    <th>No</th>
+                    <th>Product Name</th>
+                    <th>Brand Name</th>
+                    <th>Category Name</th>
+                    <th>List Price</th>
+                </tr>
+
+                {%for i in range(0, len)%}
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{data[i][0]}}</td>
+                    <td>{{data[i][1]}}</td>
+                    <td>{{data[i][2]}}</td>
+                    <td>{{data[i][3]}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

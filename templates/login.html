@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .main {
+            margin-top: 100px;
+            margin-left: 30px;
+        }
+
+        .form-control {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 10px;
+            margin-bottom: 50px;
+            padding: 12px;
+            width: 500px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .submit {
+            margin-top: -12px;
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+            padding: 12px 10px;
+        }
+
+        .submit:hover {
+            cursor: pointer;
+            background-color: rgba(20, 87, 175, 0.4);
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Login Page</h1>
+        <form action="" method='post'>
+            <div class="input-form">
+                <label for="usr">User Name</label><br>
+                <input type="text" name="nm" placeholder='User Name' id='usr' class="form-control">
+            </div>
+            <div class="input-form">
+                <label for="pwd">Password</label><br>
+                <input type="password" name="pass" placeholder="Password" id='pwd' class="form-control">
+            </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class=flashes>
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <div class="input-form">
+                <input class="submit" type="submit" value="Đăng Nhập">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
